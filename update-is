@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+
+if [ -d ~/.is ];
+then
+  pushd ~/.is
+
+  if [ -d ~/.is/image-sequencer/ ];
+  then
+    rm -rf ~/.is/*
+  fi
+    git clone https://github.com/Harshithpabbati/image-sequencer.git
+
+    pushd ~/.is/image-sequencer/
+    git checkout gh-pages
+    git remote add upstream https://github.com/publiclab/image-sequencer.git
+    git fetch upstream
+    git merge -f upstream/main
+    npm run setup
+    grunt browserify
+    grunt uglify
+
+    if [ ! -f CNAME ];
+    then
+      touch CNAME
+    fi
+    echo "beta.sequencer.publiclab.org" > CNAME
+
+    git add .
+    git add -f node_modules/
+    git commit -m "update"
+    git push
+
+    popd 
+    popd
+else
+  mkdir ~/.is
+  update-is
+fi
