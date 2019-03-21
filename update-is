@@ -17,8 +17,8 @@ then
     git fetch upstream
     git merge -f upstream/main
     npm run setup
-    grunt browserify
-    grunt uglify
+
+    grunt production
 
     if [ ! -f CNAME ];
     then
