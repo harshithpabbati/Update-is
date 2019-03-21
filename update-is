@@ -15,10 +15,9 @@ then
     git checkout gh-pages
     git remote add upstream https://github.com/publiclab/image-sequencer.git
     git fetch upstream
-    git merge -f upstream/main
+    git reset --hard upstream/main
     npm run setup
-    grunt browserify
-    grunt uglify
+    grunt production
 
     if [ ! -f CNAME ];
     then
