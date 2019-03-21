@@ -17,6 +17,7 @@ then
     git fetch upstream
     git reset --hard upstream/main
     npm run setup
+
     grunt production
 
     if [ ! -f CNAME ];
