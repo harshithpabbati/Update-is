@@ -1,61 +1,72 @@
 #!/bin/bash
 set -e
 
-if [ -d ~/.is ];
+if [ "$1" == "--self-update" ] || [ "$1" == "-s" ];
 then
-  pushd ~/.is
-
-  if [ -d ~/.is/image-sequencer/ ];
-  then
-    rm -rf ~/.is/*
-  fi
-    git clone https://github.com/Harshithpabbati/image-sequencer.git
-
-    pushd ~/.is/image-sequencer/
-    git checkout gh-pages
-    git remote add upstream https://github.com/publiclab/image-sequencer.git
-    git fetch upstream
-    git reset --hard upstream/main
-    npm run setup
-
-    grunt production
-
-    if [ ! -f CNAME ];
-    then
-      touch CNAME
-    fi
-    echo "beta.sequencer.publiclab.org" > CNAME
-    
-    rm -R docs/
-    rm -R spec/
-    rm -R test/
-    rm CONTRIBUTING.md
-    rm index.js
-    
-    cp src/ui/prepareDynamic.js prepareDynamic.js
-    
-    rm -R src/
-    mkdir -p src/ui/
-    mv prepareDynamic.js src/ui/prepareDynamic.js
-
-    git add .
-    git add -f node_modules/jquery/
-    git add -f node_modules/bootstrap/
-    git add -f node_modules/imgareaselect/
-    git add -f node_modules/gifshot/
-    git add -f node_modules/downloadjs/
-    git add -f node_modules/selectize/
-    git add -f node_modules/font-awesome/
-    
-    git add -f dist/image-sequencer.js
-    git add -f dist/image-sequencer-ui.js
-    
-    git commit -m "update"
-    git push
-
-    popd 
-    popd
+  pushd ~/.bin
+  
+  rm update-is
+  wget https://raw.githubusercontent.com/Harshithpabbati/Update-is/master/update-is
+  
+  sudo chmod +x update-is
+  popd
 else
-  mkdir ~/.is
-  update-is
+  if [ -d ~/.is ];
+  then
+    pushd ~/.is
+
+    if [ -d ~/.is/image-sequencer/ ];
+    then
+      rm -rf ~/.is/*
+    fi
+      git clone https://github.com/Harshithpabbati/image-sequencer.git
+
+      pushd ~/.is/image-sequencer/
+      git checkout gh-pages
+      git remote add upstream https://github.com/publiclab/image-sequencer.git
+      git fetch upstream
+      git reset --hard upstream/main
+      npm run setup
+
+      grunt production
+
+      if [ ! -f CNAME ];
+      then
+        touch CNAME
+      fi
+      echo "beta.sequencer.publiclab.org" > CNAME
+    
+      rm -R docs/
+      rm -R spec/
+      rm -R test/
+      rm CONTRIBUTING.md
+      rm index.js
+    
+      cp src/ui/prepareDynamic.js prepareDynamic.js
+    
+      rm -R src/
+      mkdir -p src/ui/
+      mv prepareDynamic.js src/ui/prepareDynamic.js
+
+      git add .
+      git add -f node_modules/jquery/
+      git add -f node_modules/bootstrap/
+      git add -f node_modules/imgareaselect/
+      git add -f node_modules/gifshot/
+      git add -f node_modules/downloadjs/
+      git add -f node_modules/selectize/
+      git add -f node_modules/font-awesome/
+    
+      git add -f dist/image-sequencer.js
+      git add -f dist/image-sequencer-ui.js
+    
+      git commit -m "update"
+      git push
+
+      popd 
+      popd
+  else
+    mkdir ~/.is
+    update-is
+  fi
 fi
