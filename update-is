@@ -60,8 +60,8 @@ else
       git add -f dist/image-sequencer.js
       git add -f dist/image-sequencer-ui.js
     
-      git commit -m "update"
-      git push
+      git commit --no-verify -m "update"
+      git push -f
 
       popd 
       popd
