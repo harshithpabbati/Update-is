@@ -3,7 +3,7 @@ set -e
 
 if [ "$1" == "--self-update" ] || [ "$1" == "-s" ];
 then
-  pushd ~/.bin
+  pushd ~/bin
   
   rm update-is
   wget https://raw.githubusercontent.com/Harshithpabbati/Update-is/master/update-is
