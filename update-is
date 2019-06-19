@@ -6,7 +6,7 @@ then
   pushd ~/bin
   
   rm update-is
-  wget https://raw.githubusercontent.com/Harshithpabbati/Update-is/master/update-is
+  wget https://raw.githubusercontent.com/harshithpabbati/Update-is/master/update-is
   
   sudo chmod +x update-is
   popd
@@ -19,7 +19,7 @@ else
     then
       rm -rf ~/.is/*
     fi
-      git clone https://github.com/Harshithpabbati/image-sequencer.git
+      git clone https://github.com/harshithpabbati/image-sequencer.git
 
       pushd ~/.is/image-sequencer/
       git checkout gh-pages
