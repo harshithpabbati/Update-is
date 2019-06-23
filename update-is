@@ -37,7 +37,6 @@ else
       echo "beta.sequencer.publiclab.org" > CNAME
     
       rm -R docs/
-      rm -R spec/
       rm -R test/
       rm CONTRIBUTING.md
       rm index.js
