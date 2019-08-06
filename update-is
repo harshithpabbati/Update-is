@@ -56,6 +56,7 @@ else
       git add -f node_modules/selectize/
       git add -f node_modules/font-awesome/
       git add -f node_modules/bootstrap-colorpicker/
+      git add -f node_modules/opencv.js/
     
       git add -f dist/image-sequencer.js
       git add -f dist/image-sequencer-ui.js
